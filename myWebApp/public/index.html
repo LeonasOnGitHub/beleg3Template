@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Greenway</title>
+  <link id="mainlogoID"rel="icon" type="image/svg+xml" href="src/logo.svg" sizes="any">
+  <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" />
+  <!-- Free Icon Pack by Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmaF04uqlekz1P78x5C_Yc7TJoKLveCl0&callback=initMap"></script>
+  <script src="javascripts/script.js" async defer></script>
+</head>
+
+<body class="mebastyle">
+  <!-- Navbar -->
+  <div id="navbox">
+    <nav class="side-nav">
+      <img src="src/logo.svg" alt="Greenway Logo" id="logoID">
+      <ul class="nav-links">
+        <li><a href="#" onclick="displayBaseGUI()"><i class="fas fa-home"></i></a></li>
+        <li><a href="#" onclick="displayBaseGUI()"><i class="fas fa-map-pin"></i></a></li>
+        <li><a href="#" onclick="showUpdateScreen()"><i class="fas fa-edit"></i></a></li>
+        <li id="navbar_add_btn"><a id="show_add_screen_id" href="#add_screen_id" onclick="showAddScreen()"><i class="fas fa-add"></i></a></li>
+        <li id="navbar_del_btn"><a href="#update_screen_id" onclick="showUpdateScreen()"><i class="fas fa-trash"></i></a></li>
+        <div class="active"></div>
+      </ul>
+    </nav>
+  </div>
+  <!-- Header -->
+  <header>
+    <div class="top_bar_box">
+      <ul id="top_bar_id">
+        <li>
+          <h1>Greenway</h1>
+        </li>
+        
+        <li>
+          <label class="logout_button"><button onclick="btn_logout()">Logout</button>
+          </label>
+        </li>
+        </form>
+    </div>
+    </ul>
+  </header>
+  <!-- show login pop up - invisible checkbox -->
+  <div id="greeting">
+    <p>Welcome new user! Sign-up or Login for access to all site functions</p>
+  </div>
+  <!-- Login-Screen -->
+
+  <div id="login_screen_wrapper">
+    <div class="login_screen">
+      <div id="login_form">
+        <div class="text">
+          Login Form
+        </div>
+        <form action="#">
+          <div class="login_data">
+            <label>Username</label>
+            <input type="text" id="username" required>
+          </div>
+          <div class="login_data">
+            <label>Password</label>
+            <input type="password" id="password" required>
+          </div>
+          <div class="forgot_pass">
+            <a href="#">Forgot Password?</a>
+          </div>
+          <div class="login_button">
+            <div class="inner"></div>
+            <button onclick="btn_login()">Login</button>
+
+          </div>
+          <div class="signup_link">
+            Not a member? <a href="#">Signup now</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Die Karte :) -->
+  <div class="map">
+    <!-- to remove: prototype! -->
+    <div class="location_sample">
+      <div class="samples">
+        <p id="sample_header_id">HTW-Campus Wilheminenhof</p>
+        <div class="samplerslider">
+          <img src="src/htw.jpg" alt="Foto HTW-Campus" id="htw_campus">
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <p>Wilhelminenhofstraße 75A</p>
+        <p>12459 Berlin</p>
+        <br> <br>
+        <p id="sample_header_id">Fahrradverleih am Rübezahl</p>
+        <p>Müggelheimer Damm</p>
+        <p>12557 Berlin–Köpenick</p>
+        <br> <br>
+        <p id="sample_header_id">Nextbike Station Firlstraße</p>
+        <p>Wilhelminenhofstraße 41</p>
+        <p>12459 Berlin</p>
+      </div>
+    </div>
+    <!-- <img src="src/map.png" alt="Die Anischtskarte">-->
+    <div class="map_wrapper">
+    
+      <div id="map_ui_wrapper">
+        <!-- Sidebar -->
+        <div id="map_sidebar-wrapper">
+          <ul class="map_sidebar-nav" id="marker_side_bar">
+            <li class="map_sidebar-brand" style="font-weight: bold; color: #999999;">
+              <p>Orte<p>
+            </li>
+            <hr>
+          </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12" >
+                <p id="sidebarinteractor_id">
+                  <a href="#marker-menu-toggle" class="gradient-menu" id="marker-menu-toggle"><i class="fas fa-book-atlas"></i></a>
+                  Map
+                  <div class="active_book"></div>
+                <p>
+                <!-- you can use tables or divs for the overall layout -->
+                <div id="map_Id"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+      </div>
+      <!-- /#wrapper -->
+    </div>
+  </div>
+
+
+  <!-- Add-Screen -->
+  <div id="add_screen_id">
+    <div class="man_loc">
+      <div class="man_loc_dia">
+        <h4>Add Location</h4>
+        <form action="#">
+          <div class="man_loc_data">
+            <label id="req_id">Name</label>
+            <input type="text" id = "add_name" required>
+          </div>
+          <div class="man_loc_data">
+            <label>Description</label>
+            <input type="text" id ="add_description">
+          </div>
+          <div class="man_loc_data">
+            <label id="streed_id">Street & House No.</label>
+            <input type="text" id = "add_street" >
+          </div>
+          <div class="man_loc_data">
+            <label id="pc_id">Postal Code</label>
+            <input type="text" id = "add_pc" >
+          </div>
+          <div class="man_loc_data">
+            <label id="city_id">City</label>
+            <input type="text" required value="Berlin">
+          </div>
+          <div class="man_loc_data">
+            <label>Latitude</label>
+            <input type="text" id = "add_lat">
+          </div>
+          <div class="man_loc_data">
+            <label>Longitude</label>
+            <input type="text" id = "add_lon">
+          </div>
+          <div class="man_loc_data">
+            <label>Upload Picture</label>
+            <input type="file">
+          </div>
+          <div class="man_loc_data">
+            <label>Danger/Pollution Level</label>
+            <input type="range">
+          </div>
+          <div class="signup_link">
+            underlined input fields are required
+          </div>
+          <div class="menu_buttons">
+            <div class="login_button">
+              <div class="inner"></div>
+              <button onclick="btn_add()">add</button>
+            </div>
+            <div class="login_button">
+              <div class="inner"></div>
+              <button onclick="btn_cencel()">cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--  <p>Update-Screen </p> -->
+  <div id="update_screen_id">
+    <div class="man_loc">
+      <div class="man_loc_dia">
+        <h4>Update Location</h4>
+        <form action="#">
+          <div class="man_loc_data">
+            <label id="req_id">Name</label>
+            <input type="text" id = "change_name_id" required>
+          </div>
+          <div class="man_loc_data">
+            <label>Description </label>
+            <input type="text" id="change_desc_id">
+          </div>
+          <div class="man_loc_data">
+            <label id="req_id">Street & House No.</label>
+            <input type="text" required id="change_street_ho_id">
+          </div>
+          <div class="man_loc_data">
+            <label id="req_id">Postal Code</label>
+            <input type="text" required id="change_postal_id">
+          </div>
+          <div class="man_loc_data">
+            <label id="req_id">City</label>
+            <input type="text" required id="change_city_id">
+          </div>
+          <div class="man_loc_data">
+            <label>Latitude</label>
+            <input type="text" id="change_lat_id">
+          </div>
+          <div class="man_loc_data">
+            <label>Longitude</label>
+            <input type="text" id="change_long_id">
+          </div>
+          <div class="man_loc_data">
+            <label>Upload Picture</label>
+            <input type="file">
+          </div>
+          <div class="man_loc_data">
+            <label>Danger/Pollution Level</label>
+            <input type="range">
+          </div>
+          <div class="signup_link">
+            underlined input fields are required
+          </div>
+          <div class="menu_buttons">
+            <div class="login_button">
+              <div class="inner" id="outer_upd_upd"></div>
+              <button onclick="btn_update()" id ="upd_upd">Update</button>
+            </div>
+            <div class="login_button">
+              <div class="inner" id="outer_upd_del"></div>
+              <button onclick="btn_del()" id ="upd_del">Delete</button>
+            </div>
+            <div class="login_button">
+              <div class="inner"></div>
+              <button onclick="btn_cencel()">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer">
+        <text><a href="#" onclick="openDialog('impressum_popUp')">Impressum</a></text>
+        <text></p><a href="#" onclick="openDialog('datenschutzerklaerung_popUp')">Datenschutzerklärung</a></text>
+    </div>
+  </footer>
+
+  <dialog id="impressum_popUp">
+    <h1>Impressum</h1>
+    <p>Da wo du nicht bist.</p>
+    <button onclick="closeDialog('impressum_popUp')">Schließen</button>
+  </dialog>
+
+  <dialog id="datenschutzerklaerung_popUp">
+    <h1>Datenschutzerklärung</h1>
+    <p>Ihre Daten sind uns wichtig denn sie bringen uns Geld.</p>
+    <button onclick="closeDialog('datenschutzerklaerung_popUp')">Schließen</button>
+  </dialog>
+</body>
+
+</html>
